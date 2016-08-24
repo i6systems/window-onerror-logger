@@ -1,0 +1,37 @@
+{
+  "name": "window-onerror-logger",
+  "version": "0.0.0",
+  "description": "window.onerror() logger",
+  "scripts": {
+    "prepublish": "npm run test && npm run build",
+
+    "test": "npm run eslint && npm run karma",
+    "eslint": "eslint src/**/*.js test/**/*.js",
+    "karma": "karma start test/karma.conf.js",
+
+    "build": "npm run rollup && npm run uglify",
+    "rollup": "rollup src/logger.js --format iife --output dist/logger.js",
+    "uglify": "uglifyjs dist/logger.js --compress --mangle --output dist/logger.min.js"
+  },
+  "keywords": [
+    "onerror",
+    "logger"
+  ],
+  "author": "nemtsov@gmail.com",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/behance/window-onerror-logger.git"
+  },
+  "devDependencies": {
+    "eslint": "^3.3.1",
+    "eslint-preset-behance": "^4.0.0",
+    "jasmine-core": "^2.4.1",
+    "karma-jasmine": "^1.0.2",
+    "karma-jasmine-ajax": "^0.1.13",
+    "karma-phantomjs-launcher": "^1.0.1",
+    "karma-rollup-preprocessor": "^2.0.2",
+    "rollup": "^0.34.10",
+    "uglify-js": "^2.7.3"
+  }
+}
