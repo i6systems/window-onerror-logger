@@ -1,7 +1,8 @@
 # Window OnError Logger [![Build Status](https://img.shields.io/travis/behance/window-onerror-logger.svg)](http://travis-ci.org/behance/window-onerror-logger) [![NPM version](https://img.shields.io/npm/v/window-onerror-logger.svg)](https://www.npmjs.com/package/window-onerror-logger)
 
 This is a tiny (< 1K ungzipped) `window.onerror` logger which sends the errors to a `/log` endpoint.
-It has the following features:
+
+## Features
 
   - errors which occur in a single tick are batched and sent in a single XHR
   - identical errors are suppressed
