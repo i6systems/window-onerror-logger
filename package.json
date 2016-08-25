@@ -1,14 +1,12 @@
 {
   "name": "window-onerror-logger",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "window.onerror() logger",
   "scripts": {
     "prepublish": "npm run test && npm run build",
-
     "test": "npm run eslint && npm run karma -- --single-run",
     "eslint": "eslint src/**/*.js test/**/*.js",
     "karma": "karma start test/karma.conf.js",
-
     "build": "npm run rollup && npm run uglify",
     "rollup": "rollup src/logger.js --format iife --output dist/logger.js",
     "uglify": "uglifyjs dist/logger.js --compress --mangle --output dist/logger.min.js"
