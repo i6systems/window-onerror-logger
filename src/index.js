@@ -2,11 +2,13 @@ function send(messages) {
   var xhr = new XMLHttpRequest();
   xhr.open('POST', '/log');
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  xhr.send('logs[]=' + JSON.stringify({
-    level: 'ERROR',
-    channel: 'js_errors',
-    messages: messages
-  }));
+  xhr.send('logs[]=' + encodeURIComponent(
+    JSON.stringify({
+      level: 'ERROR',
+      channel: 'js_errors',
+      messages: messages
+    })
+  ));
 }
 
 function isDefined(obj) {

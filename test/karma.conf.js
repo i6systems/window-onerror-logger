@@ -8,6 +8,7 @@ module.exports = function(config) {
       'jasmine'
     ],
     files: [
+      { pattern: 'src/**/*.js', included: false, watched: true },
       'test/index.js'
     ],
     preprocessors: {
@@ -19,7 +20,7 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['PhantomJS'],
-    singleRun: true,
+    singleRun: false,
     concurrency: Infinity
   });
 };
