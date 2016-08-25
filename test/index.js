@@ -26,6 +26,20 @@ describe('be/window_onerror_logger', function() {
     jasmine.Ajax.uninstall();
   });
 
+  it('should call an existing window.onerror with correct arguments', function(done) {
+    var mywin = jasmine.createSpy();
+    mywin.onerror = function(message, url, lineNo, columnNo, error) {
+      expect(message).toBe('m');
+      expect(url).toBe('u');
+      expect(lineNo).toBe(1);
+      expect(columnNo).toBe(2);
+      expect(error).toBe('e');
+      done();
+    };
+    init(mywin);
+    mywin.onerror('m', 'u', 1, 2, 'e');
+  });
+
   it('should send a POST request to /log', function() {
     win.onerror();
     jasmine.clock().tick(1);
