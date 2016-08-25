@@ -93,8 +93,12 @@ describe('be/window_onerror_logger', function() {
     });
 
     describe('location', function() {
-      it('should be empty if undefined', function() {
+      it('should be undefined if undefined', function() {
         expect(getLoggedData().context.location).not.toBeDefined();
+      });
+
+      it('should be undefined if url is an empty string', function() {
+        expect(getLoggedData('m', '').context.location).not.toBeDefined();
       });
 
       it('should have a url', function() {

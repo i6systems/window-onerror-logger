@@ -19,7 +19,7 @@ function formatPayload(message, url, lineNo, columnNo, error) {
   var context = {};
   var payload = { message: message, context: context };
 
-  if (typeof url === 'string') {
+  if (url) {
     context.location = url + (isDefined(lineNo)
       ? (':' + lineNo) + (isDefined(columnNo) ? (':' + columnNo) : '')
       : '');
