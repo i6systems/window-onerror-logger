@@ -60,7 +60,7 @@ export function init(win) {
     }
 
     if (existingOnerror) {
-      existingOnerror.call(this, arguments);
+      existingOnerror.apply(this, arguments);
     }
   };
 };
