@@ -1,6 +1,6 @@
 {
   "name": "window-onerror-logger",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "window.onerror() logger",
   "scripts": {
     "prepublish": "npm run test && npm run build",
