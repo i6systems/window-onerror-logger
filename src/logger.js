@@ -1,3 +1,5 @@
-import { init } from './index';
+import init from './init';
+import format from './format';
+import send from './send';
 
-init(window);
+init(window, format, send);

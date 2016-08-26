@@ -9,10 +9,13 @@ module.exports = function(config) {
     ],
     files: [
       { pattern: 'src/**/*.js', included: false, watched: true },
-      'test/index.js'
+      'test/specs/**/*.js'
     ],
     preprocessors: {
-      'test/index.js': ['rollup']
+      'test/specs/**/*.js': ['rollup']
+    },
+    rollupPreprocessor: {
+      sourceMap: 'inline'
     },
     reporters: ['progress'],
     port: 9876,
