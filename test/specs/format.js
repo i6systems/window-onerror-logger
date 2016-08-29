@@ -3,6 +3,13 @@
 import format from '../../src/format';
 
 describe('format', function() {
+  it('should handle circular structures', function() {
+    var m = {};
+    m.a = m;
+    var data = format(m, m, m, m, m);
+    JSON.stringify(data);
+  });
+
   describe('mesage', function() {
     it('should handle double-quote encoding', function() {
       var data = format('a "b" c');
