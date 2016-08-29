@@ -1,6 +1,6 @@
 /* eslint-env jasmine */
 
-import { init } from '../src/index';
+import { init } from '../../src/logger';
 
 describe('be/window_onerror_logger', function() {
   var win;

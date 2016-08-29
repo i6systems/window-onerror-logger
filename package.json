@@ -1,6 +1,6 @@
 {
   "name": "window-onerror-logger",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "window.onerror() logger",
   "scripts": {
     "prepublish": "npm run test && npm run build",
@@ -28,7 +28,7 @@
     "karma-jasmine": "^1.0.2",
     "karma-jasmine-ajax": "^0.1.13",
     "karma-phantomjs-launcher": "^1.0.1",
-    "karma-rollup-preprocessor": "^2.0.2",
+    "karma-rollup-plugin": "^0.2.2",
     "rollup": "^0.34.10",
     "uglify-js": "^2.7.3"
   }
