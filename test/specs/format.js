@@ -11,6 +11,12 @@ describe('format', function() {
   });
 
   describe('mesage', function() {
+    it('should extract target.src from Event as message', function() {
+      var ev = {target: {src: 'ts'}};
+      ev.toString = function() { return '[object Event]'; };
+      expect(format(ev).messages[0].message).toBe('Event#target.src=ts');
+    });
+
     it('should handle double-quote encoding', function() {
       var data = format('a "b" c');
       expect(data.messages[0].message).toBe('a "b" c');
