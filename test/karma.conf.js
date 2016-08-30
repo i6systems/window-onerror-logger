@@ -8,13 +8,13 @@ module.exports = function(config) {
       'jasmine'
     ],
     files: [
-      { pattern: 'src/**/*.js', included: false, watched: true },
       'test/specs/**/*.js'
     ],
     preprocessors: {
       'test/specs/**/*.js': ['rollup']
     },
     rollupPreprocessor: {
+      format: 'iife',
       sourceMap: 'inline'
     },
     reporters: ['progress'],
