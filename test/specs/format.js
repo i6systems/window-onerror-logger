@@ -12,24 +12,24 @@ describe('format', function() {
 
   describe('mesage', function() {
     it('should extract target.src from Event as message', function() {
-      var ev = {target: {src: 'ts'}};
+      var ev = { target: { src: 'ts' } };
       ev.toString = function() { return '[object Event]'; };
-      expect(format(ev).messages[0].message).toBe('Event#target.src=ts');
+      expect(format(ev).message).toBe('Event#target.src=ts');
     });
 
     it('should handle double-quote encoding', function() {
       var data = format('a "b" c');
-      expect(data.messages[0].message).toBe('a "b" c');
+      expect(data.message).toBe('a "b" c');
     });
 
     it('should be set when provided', function() {
       var data = format();
-      expect(data.messages[0].message).not.toBeDefined();
+      expect(data.message).not.toBeDefined();
     });
 
     it('should be undefined when not provided', function() {
       var data = format('m');
-      expect(data.messages[0].message).toBe('m');
+      expect(data.message).toBe('m');
     });
   });
 

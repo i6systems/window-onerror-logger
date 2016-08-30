@@ -15,7 +15,7 @@ export default function format(message, file, line, column, error) {
   if (message) {
     message = String((typeof message === 'object')
       ? stringifyObject(message)
-      : message)
+      : message);
   }
   if (file) { context.file = String(file); }
   if (isDefined(line)) { context.line = Number(line); }
@@ -27,7 +27,7 @@ export default function format(message, file, line, column, error) {
   return {
     level: 'ERROR',
     channel: 'js_errors',
-    messages: [{ message: message }],
+    message: message,
     context: context
   };
 }
