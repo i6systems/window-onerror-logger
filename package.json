@@ -15,6 +15,7 @@
     "onerror",
     "logger"
   ],
+  "main": "src/logger.js",
   "author": "nemtsov@gmail.com",
   "license": "Apache-2.0",
   "repository": {
