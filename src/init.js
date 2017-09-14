@@ -9,7 +9,7 @@ export default function init(win, format, send) {
     if (!hasPending) {
       hasPending = true;
       setTimeout(function() {
-        send(toSend);
+        send(toSend, win.loggerOpts);
         hasPending = false;
         toSend = [];
       }, 0);

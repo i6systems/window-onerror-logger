@@ -6,9 +6,10 @@ function encode(logs) {
   return encodedLogs.join('&');
 }
 
-export default function send(logs) {
+export default function send(logs, loggerOpts) {
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', '/log');
+  loggerOpts = loggerOpts || {};
+  xhr.open(loggerOpts.method || 'POST', loggerOpts.url || '/log');
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhr.send(encode(logs));
 }

@@ -16,7 +16,7 @@ describe('send', function() {
     jasmine.Ajax.uninstall();
   });
 
-  it('should send a POST request to /log', function() {
+  it('should send a POST request to /log with no loggerOpts', function() {
     send(['l']);
 
     var requests = jasmine.Ajax.requests;
@@ -24,6 +24,43 @@ describe('send', function() {
 
     var req = requests.mostRecent();
     expect(req.method).toBe('POST');
+    expect(req.url).toBe('/log');
+
+    var logData = parseLogsBody(req.data(), 0);
+    expect(logData).toBe('l');
+  });
+
+  it('should send a GET request to /log with loggerOpts containing a GET method', function() {
+    var loggerOpts = {
+      method: 'GET',
+    };
+
+    send(['l'], loggerOpts);
+
+    var requests = jasmine.Ajax.requests;
+    expect(requests.count()).toBe(1);
+
+    var req = requests.mostRecent();
+    expect(req.method).toBe('GET');
+    expect(req.url).toBe('/log');
+
+    var logData = parseLogsBody(req.data(), 0);
+    expect(logData).toBe('l');
+  });
+
+  it('should send a POST request to /other-log with loggerOpts containing a differnt url', function() {
+    var loggerOpts = {
+      url: '/other-log',
+    };
+
+    send(['l'], loggerOpts);
+
+    var requests = jasmine.Ajax.requests;
+    expect(requests.count()).toBe(1);
+
+    var req = requests.mostRecent();
+    expect(req.method).toBe('POST');
+    expect(req.url).toBe('/other-log');
 
     var logData = parseLogsBody(req.data(), 0);
     expect(logData).toBe('l');
@@ -37,6 +74,7 @@ describe('send', function() {
 
     var req = requests.mostRecent();
     expect(req.method).toBe('POST');
+    expect(req.url).toBe('/log');
 
     var l1 = parseLogsBody(req.data(), 0);
     expect(l1).toBe('a');
