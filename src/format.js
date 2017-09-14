@@ -28,6 +28,6 @@ export default function format(message, file, line, column, error) {
     level: 'ERROR',
     channel: 'js_errors',
     message: message,
-    context: context
+    context: context,
   };
 }

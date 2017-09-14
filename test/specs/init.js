@@ -12,6 +12,7 @@ describe('init', function() {
   }
 
   beforeEach(function() {
+    jasmine.Ajax.install();
     jasmine.clock().install();
     win = jasmine.createSpy();
     format = jasmine.createSpy().and.callFake(function(message, file, line, column, error) {
@@ -20,7 +21,7 @@ describe('init', function() {
         file: file,
         line: line,
         column: column,
-        error: error
+        error: error,
       };
     });
     send = jasmine.createSpy();

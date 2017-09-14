@@ -7,15 +7,20 @@ module.exports = function(config) {
       'jasmine-ajax',
       'jasmine'
     ],
-    files: [
-      'test/specs/**/*.js'
-    ],
+    files: [{
+      pattern: 'test/specs/**/*.js',
+      watched: false
+    }],
     preprocessors: {
       'test/specs/**/*.js': ['rollup']
     },
     rollupPreprocessor: {
+  	  plugins: [
+		require('rollup-plugin-buble')()
+	  ],
       format: 'iife',
-      sourceMap: 'inline'
+      name: 'windowOnerrorLogger',
+      sourcemap: 'inline'
     },
     reporters: ['progress'],
     port: 9876,
