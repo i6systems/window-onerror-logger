@@ -1,4 +1,4 @@
-# Window OnError Logger [![Build Status](https://img.shields.io/travis/behance/window-onerror-logger.svg)](http://travis-ci.org/behance/window-onerror-logger) [![NPM version](https://img.shields.io/npm/v/window-onerror-logger.svg)](https://www.npmjs.com/package/window-onerror-logger)
+# Window OnError Logger
 
 This is a tiny (< 1K ungzipped) `window.onerror` logger which sends the errors to a `/log` endpoint.
 
