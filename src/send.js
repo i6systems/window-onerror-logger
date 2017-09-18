@@ -8,8 +8,11 @@ function encode(logs) {
 
 export default function send(logs, loggerOpts) {
   var xhr = new XMLHttpRequest();
-  loggerOpts = loggerOpts || {};
-  xhr.open(loggerOpts.method || 'POST', loggerOpts.url || '/log');
+  loggerOpts = loggerOpts || {
+    method: 'POST',
+    url: '/log'
+  };
+  xhr.open(loggerOpts.method, loggerOpts.url);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
   xhr.send(encode(logs));
 }

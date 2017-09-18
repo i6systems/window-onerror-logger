@@ -4,12 +4,19 @@ export default function init(win, format, send) {
   var hasPending = false;
   var existingOnerror = win.onerror;
 
+  var loggerOpts = window.loggerOpts || {
+    method: 'POST',
+    url: '/log',
+    enabled: true,
+    console: false
+  };
+
   function addToBatch(payload) {
     toSend.push(payload);
     if (!hasPending) {
       hasPending = true;
       setTimeout(function() {
-        send(toSend, win.loggerOpts);
+        send(toSend, loggerOpts);
         hasPending = false;
         toSend = [];
       }, 0);
@@ -23,6 +30,18 @@ export default function init(win, format, send) {
     if (!sentKeys[key]) {
       sentKeys[key] = true;
       addToBatch(payload);
+    }
+
+    if (loggerOpts.console) {
+        var message = [
+            'Message: ' + payload.message,
+            'URL: ' + payload.context.file,
+            'Line: ' + payload.context.line,
+            'Column: ' + payload.context.column,
+            'Error object: ' + payload.context.stack
+        ].join(' - ');
+
+        console.error(message);
     }
 
     if (existingOnerror) {
