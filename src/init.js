@@ -4,11 +4,12 @@ export default function init(win, format, send) {
   var hasPending = false;
   var existingOnerror = win.onerror;
 
-  var loggerOpts = window.loggerOpts || {
+  var loggerOpts = win.loggerOpts || {
     method: 'POST',
     url: '/log',
     enabled: true,
-    console: false
+    console: false,
+    propagate: false,
   };
 
   function addToBatch(payload) {
@@ -33,19 +34,21 @@ export default function init(win, format, send) {
     }
 
     if (loggerOpts.console) {
-        var message = [
-            'Message: ' + payload.message,
-            'URL: ' + payload.context.file,
-            'Line: ' + payload.context.line,
-            'Column: ' + payload.context.column,
-            'Error object: ' + payload.context.stack
-        ].join(' - ');
+      var message = [
+        'Message: ' + payload.message,
+        'URL: ' + payload.context.file,
+        'Line: ' + payload.context.line,
+        'Column: ' + payload.context.column,
+        'Error object: ' + payload.context.stack,
+      ].join(' - ');
 
-        console.error(message);
+      console.error(message);
     }
 
     if (existingOnerror) {
       existingOnerror.apply(this, arguments);
     }
+
+    return !loggerOpts.propagate;
   };
 };
