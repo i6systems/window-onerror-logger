@@ -12,6 +12,10 @@ export default function init(win, format, send) {
     propagate: false,
   };
 
+  if (!loggerOpts.enabled) {
+    return;
+  }
+
   function addToBatch(payload) {
     toSend.push(payload);
     if (!hasPending) {
