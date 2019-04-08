@@ -3,83 +3,83 @@
 import send from '../../src/send';
 
 describe('send', function() {
-  function parseLogsBody(body, index) {
-    return JSON.parse(body['logs[]'][index]);
-  }
+    function parseLogsBody(body, index) {
+        return JSON.parse(body['logs[]'][index]);
+    }
 
-  beforeEach(function() {
-    jasmine.Ajax.install();
-    jasmine.Ajax.stubRequest('/log');
-  });
+    beforeEach(function() {
+        jasmine.Ajax.install();
+        jasmine.Ajax.stubRequest('/log');
+    });
 
-  afterEach(function() {
-    jasmine.Ajax.uninstall();
-  });
+    afterEach(function() {
+        jasmine.Ajax.uninstall();
+    });
 
-  it('should send a POST request to /log with no loggerOpts', function() {
-    send(['l']);
+    it('should send a POST request to /log with no loggerOpts', function() {
+        send(['l']);
 
-    var requests = jasmine.Ajax.requests;
-    expect(requests.count()).toBe(1);
+        var requests = jasmine.Ajax.requests;
+        expect(requests.count()).toBe(1);
 
-    var req = requests.mostRecent();
-    expect(req.method).toBe('POST');
-    expect(req.url).toBe('/log');
+        var req = requests.mostRecent();
+        expect(req.method).toBe('POST');
+        expect(req.url).toBe('/log');
 
-    var logData = parseLogsBody(req.data(), 0);
-    expect(logData).toBe('l');
-  });
+        var logData = parseLogsBody(req.data(), 0);
+        expect(logData).toBe('l');
+    });
 
-  it('should send a GET request to /log with loggerOpts containing a GET method', function() {
-    var loggerOpts = {
-      method: 'GET',
-    };
+    it('should send a GET request to /log with loggerOpts containing a GET method', function() {
+        var loggerOpts = {
+            method: 'GET',
+        };
 
-    send(['l'], loggerOpts);
+        send(['l'], loggerOpts);
 
-    var requests = jasmine.Ajax.requests;
-    expect(requests.count()).toBe(1);
+        var requests = jasmine.Ajax.requests;
+        expect(requests.count()).toBe(1);
 
-    var req = requests.mostRecent();
-    expect(req.method).toBe('GET');
-    expect(req.url).toBe('/log');
+        var req = requests.mostRecent();
+        expect(req.method).toBe('GET');
+        expect(req.url).toBe('/log');
 
-    var logData = parseLogsBody(req.data(), 0);
-    expect(logData).toBe('l');
-  });
+        var logData = parseLogsBody(req.data(), 0);
+        expect(logData).toBe('l');
+    });
 
-  it('should send a POST request to /other-log with loggerOpts containing a differnt url', function() {
-    var loggerOpts = {
-      url: '/other-log',
-    };
+    it('should send a POST request to /other-log with loggerOpts containing a differnt url', function() {
+        var loggerOpts = {
+            url: '/other-log',
+        };
 
-    send(['l'], loggerOpts);
+        send(['l'], loggerOpts);
 
-    var requests = jasmine.Ajax.requests;
-    expect(requests.count()).toBe(1);
+        var requests = jasmine.Ajax.requests;
+        expect(requests.count()).toBe(1);
 
-    var req = requests.mostRecent();
-    expect(req.method).toBe('POST');
-    expect(req.url).toBe('/other-log');
+        var req = requests.mostRecent();
+        expect(req.method).toBe('POST');
+        expect(req.url).toBe('/other-log');
 
-    var logData = parseLogsBody(req.data(), 0);
-    expect(logData).toBe('l');
-  });
+        var logData = parseLogsBody(req.data(), 0);
+        expect(logData).toBe('l');
+    });
 
-  it('should send an array of logs in a single request', function() {
-    send(['a', 'b']);
+    it('should send an array of logs in a single request', function() {
+        send(['a', 'b']);
 
-    var requests = jasmine.Ajax.requests;
-    expect(requests.count()).toBe(1);
+        var requests = jasmine.Ajax.requests;
+        expect(requests.count()).toBe(1);
 
-    var req = requests.mostRecent();
-    expect(req.method).toBe('POST');
-    expect(req.url).toBe('/log');
+        var req = requests.mostRecent();
+        expect(req.method).toBe('POST');
+        expect(req.url).toBe('/log');
 
-    var l1 = parseLogsBody(req.data(), 0);
-    expect(l1).toBe('a');
+        var l1 = parseLogsBody(req.data(), 0);
+        expect(l1).toBe('a');
 
-    var l2 = parseLogsBody(req.data(), 1);
-    expect(l2).toBe('b');
-  });
+        var l2 = parseLogsBody(req.data(), 1);
+        expect(l2).toBe('b');
+    });
 });
